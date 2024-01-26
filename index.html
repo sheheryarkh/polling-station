@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polling Station</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Polling Station</h1>
+        <div id="pollOptions">
+            <div class="option">
+                <span>obaid</span>
+                <button class="voteBtn" data-id="optionA">Vote</button>
+                <span class="voteCount" id="optionACount">0</span>
+            </div>
+            <div class="option">
+                <span>sheheryar</span>
+                <button class="voteBtn" data-id="optionB">Vote</button>
+                <span class="voteCount" id="optionBCount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const optionAButton = document.querySelector('[data-id="optionA"]');
+    const optionBButton = document.querySelector('[data-id="optionB"]');
+    const optionACountDisplay = document.getElementById('optionACount');
+    const optionBCountDisplay = document.getElementById('optionBCount');
+
+    // Initialize vote counts from local storage or set to 0
+    let optionAVotes = parseInt(localStorage.getItem('optionAVotes')) || 0;
+    let optionBVotes = parseInt(localStorage.getItem('optionBVotes')) || 0;
+
+    // Update vote count displays
+    optionACountDisplay.textContent = optionAVotes;
+    optionBCountDisplay.textContent = optionBVotes;
+
+    // Event listeners for voting buttons
+    optionAButton.addEventListener('click', () => {
+        optionAVotes++;
+        optionACountDisplay.textContent = optionAVotes;
+        localStorage.setItem('optionAVotes', optionAVotes);
+    });
+
+    optionBButton.addEventListener('click', () => {
+        optionBVotes++;
+        optionBCountDisplay.textContent = optionBVotes;
+        localStorage.setItem('optionBVotes', optionBVotes);
+    });
+});
+
+    </script>
+</body>
+</html>
